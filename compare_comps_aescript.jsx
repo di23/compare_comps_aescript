@@ -7,4 +7,17 @@
 */
 ( function (){
 
+// ---------------------------------
+// Checks
+// ---------------------------------
+
+// check if two items selected
+if ( app.project.selection.length != 2 ){
+
+    alert( "Select 2 comps in the Project panel." );
+    return; // Exit
+}
+
+alert( "HURAY!" );
+
 })(); // end
