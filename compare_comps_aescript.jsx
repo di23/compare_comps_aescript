@@ -28,6 +28,27 @@ if ( !( comp_1 instanceof CompItem ) || !( comp_2 instanceof CompItem )){
     return; // Exit
 }
 
-alert( "HURAY!" );
+// ---------------------------------
+// Compare
+// ---------------------------------
+
+var comparison_log = "";
+
+// Compare layers names
+var same_name_arr = new Array( comp_1.layers.length );
+
+for ( var i1 = 1; i1 <= comp_1.layers.length; i1++ ){
+
+    same_name_arr[ i1 - 1 ] = 0;
+
+    for ( var i2 = 1; i2 <= comp_2.layers.length; i2++ ){
+
+        if ( comp_1.layer( i1 ).name == comp_2.layer( i2 ).name ){
+            same_name_arr[ i1 - 1 ] = i2;
+        }
+    }
+}
+
+alert( same_name_arr );
 
 })(); // end
