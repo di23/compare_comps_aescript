@@ -32,6 +32,20 @@ function include( arr, val ){
     return false;
 }
 
+// Window that can show long text
+function textWindow( title, text ) {
+    var win = new Window( "palette", title, [ 0, 0, 490, 600 ]);
+    var textPanel = win.add( "edittext", [ 10, 10, 480, 590 ], text, { multiline: true });
+
+    var invisBtn = win.add("button", undefined, "Ok"); // this prevents to close window
+    invisBtn.onClick = function() {
+        win.close();
+    };
+
+    win.center();
+    win.show();
+}
+
 // ---------------------------------
 // Checks
 // ---------------------------------
@@ -76,8 +90,8 @@ for ( var i1 = 1; i1 <= comp_1.layers.length; i1++ ){
 
 // Log mismatched layers
 comparison_log += "\
-MISMACHED LAYERS\
-----------------\
+MISMATCHED LAYERS\
+-------------------------------------------------\
 comp : " + comp_1.name + "\n";
 
 var mis_ids = getAllIndexes( same_name_arr, 0 );
@@ -97,6 +111,7 @@ for ( var i = 1; i <= comp_2.layers.length; i++ ){
     }
 }
 
-alert( comparison_log );
+
+textWindow( "Comparison Results", comparison_log );
 
 })(); // end
