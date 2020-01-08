@@ -8,6 +8,31 @@
 ( function (){
 
 // ---------------------------------
+// Functions
+// ---------------------------------
+
+// Find all indexes that have the same value in array.
+function getAllIndexes( arr, val ){
+    var indexes = [];
+    for ( var i = 0; i < arr.length; i++ ){
+        if ( arr[ i ] === val ){
+            indexes.push( i );
+        }
+    }
+    return indexes;
+}
+
+// Check if array includes value
+function include( arr, val ){
+    for( var i = 0; i < arr.length; i++ ){
+        if ( arr[ i ] === val ){
+            return true;
+        };
+    }
+    return false;
+}
+
+// ---------------------------------
 // Checks
 // ---------------------------------
 
@@ -49,6 +74,29 @@ for ( var i1 = 1; i1 <= comp_1.layers.length; i1++ ){
     }
 }
 
-alert( same_name_arr );
+// Log mismatched layers
+comparison_log += "\
+MISMACHED LAYERS\
+----------------\
+comp : " + comp_1.name + "\n";
+
+var mis_ids = getAllIndexes( same_name_arr, 0 );
+for ( var i = 0; i < mis_ids.length; i++ ){
+
+    id = mis_ids[ i ] + 1;
+    comparison_log += "    " + id + " : " + comp_1.layer( id ).name + "\n";
+}
+
+comparison_log += "\
+comp : " + comp_2.name + "\n";
+
+for ( var i = 1; i <= comp_2.layers.length; i++ ){
+
+    if ( !include( same_name_arr, i )){
+        comparison_log += "    " + i + " : " + comp_2.layer( i ).name + "\n";
+    }
+}
+
+alert( comparison_log );
 
 })(); // end
